@@ -4,6 +4,7 @@ import com.ladera.telecom.filter.CsrfCookieFilter;
 import com.ladera.telecom.filter.JWTTokenGeneratorFilter;
 import com.ladera.telecom.filter.JWTTokenValidatorFilter;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -24,6 +25,9 @@ import java.util.Collections;
 @Configuration
 public class ProjectSecurityConfig {
 
+    @Value("${allowed.origins}")
+    private String allowedOrigin;
+
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
@@ -34,7 +38,7 @@ public class ProjectSecurityConfig {
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                         CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+                        config.setAllowedOrigins(Collections.singletonList(allowedOrigin));
                         config.setAllowedMethods(Collections.singletonList("*"));
                         config.setAllowCredentials(true);
                         config.setAllowedHeaders(Collections.singletonList("*"));

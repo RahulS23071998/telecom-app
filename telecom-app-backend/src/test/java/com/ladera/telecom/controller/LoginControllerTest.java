@@ -33,7 +33,7 @@ public class LoginControllerTest {
                 .email("rahul@telecom.com")
                 .mobileNumber("9677210944")
                 .pwd("12345")
-                .role("amdin")
+                .role("admin")
                 .name("rahul")
                 .build();
 

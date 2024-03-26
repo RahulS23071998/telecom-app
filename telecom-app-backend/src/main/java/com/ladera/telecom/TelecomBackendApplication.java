@@ -38,9 +38,6 @@ import javax.sql.DataSource;
 )
 public class TelecomBackendApplication {
 
-	JdbcTemplate jdbcTemplate;
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(TelecomBackendApplication.class, args);
 	}
